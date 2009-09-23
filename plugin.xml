@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.rap.ui.entrypoint">
+      <entrypoint
+            class="openlayers_rap_advanced_example.Application"
+            parameter="maps"
+            id="openlayers_rap_advanced_example.Application">
+      </entrypoint>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RAP Perspective"
+            class="openlayers_rap_advanced_example.Perspective"
+            id="OpenLayers_RAP_Advanced_Example.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            name="Map"
+            icon="icons/add.gif"
+            class="openlayers_rap_advanced_example.View"
+            id="OpenLayers_RAP_Advanced_Example.view">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Mail"
+            id="openlayers_rap_advanced_example.category">
+      </category>
+      <command
+            name="Open Mailbox"
+            description="Opens a mailbox"
+            categoryId="openlayers_rap_advanced_example.category"
+            id="openlayers_rap_advanced_example.open">
+      </command>
+      <command
+            name="Open Message Dialog"
+            description="Opens a message dialog"
+            categoryId="openlayers_rap_advanced_example.category"
+            id="openlayers_rap_advanced_example.openMessage">
+      </command>
+   </extension>
+
+</plugin>
