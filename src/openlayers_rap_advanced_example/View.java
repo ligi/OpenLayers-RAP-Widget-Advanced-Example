@@ -57,20 +57,18 @@ public class View
 	public static final String ID = "OpenLayers_RAP_Advanced_Example.view";
 
 	private Shell add_wms_shell;
+	private Shell edit_center_shell;
+	
 	private Display display;
-	private Button toolbar_btn;
+	private Button open_add_wms_shell_btn,open_set_center_btn;
 	private OpenLayers openlayers;
-	private Text wms_add_name;
-	private Text wms_add_url;
-	private Text wms_add_layers;
-	private Button add_wms_btn;
-	private Button load_wms_example;
+	private Text wms_add_layers,wms_add_url,wms_add_name,center_lon_field,center_lat_field,zoom_field;
+	private Button add_wms_btn,set_center_btn,load_wms_example ;
+	
+	private Font boldFont;
 	
 	public void createAddWMSShell()
 	{
-		// setup bold font
-		Font boldFont = JFaceResources.getFontRegistry().getBold(JFaceResources.DEFAULT_FONT);    
-	
 		add_wms_shell=new Shell(display);
 		FillLayout toolbar_layout=new FillLayout();
 		toolbar_layout.type=SWT.HORIZONTAL;
@@ -105,9 +103,47 @@ public class View
 		
 	}
 
+	public void createEditCenterShell()
+	{
+	
+		edit_center_shell=new Shell(display);
+		FillLayout toolbar_layout=new FillLayout();
+		toolbar_layout.type=SWT.HORIZONTAL;
+		edit_center_shell.setLayout( toolbar_layout );
+		edit_center_shell.setText( "Edit Center" );
+		edit_center_shell.setSize(400,50);
+	
+		Label l=new Label(edit_center_shell,SWT.NONE);
+		l.setFont(boldFont);
+		l.setText("Lon:");
+		//new Label(add_wms_shell,SWT.NONE).setText("name:");
+		center_lon_field=new Text(edit_center_shell,SWT.NONE | SWT.BORDER);
+		//new Label(add_wms_shell,SWT.NONE).setText("URL:");
+		l=new Label(edit_center_shell,SWT.NONE);
+		l.setFont(boldFont);
+		l.setText("Lat:");
+		center_lat_field=new Text(edit_center_shell,SWT.NONE | SWT.BORDER);
+		l=new Label(edit_center_shell,SWT.NONE);
+		l.setFont(boldFont);
+		l.setText("Zoom:");
+
+		//new Label(add_wms_shell,SWT.NONE).setText("Layers:");
+		zoom_field=new Text(edit_center_shell,SWT.NONE | SWT.BORDER);
+		
+		set_center_btn=new Button(edit_center_shell,SWT.NONE | SWT.BORDER);
+		set_center_btn.setText("OK");
+		set_center_btn.addMouseListener(this);	
+		
+	}
+	
 	public void createPartControl(Composite parent) {
 		display = parent.getDisplay();
+		
+		// setup bold font
+		Font boldFont = JFaceResources.getFontRegistry().getBold(JFaceResources.DEFAULT_FONT);    
+		
 		createAddWMSShell();
+		createEditCenterShell();
 		
 		Composite top = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
@@ -124,10 +160,14 @@ public class View
 		banner.setLayout(layout);
 		
 		
-		toolbar_btn= new Button(banner,SWT.PUSH);
-		toolbar_btn.setText("add WMS");
+		open_add_wms_shell_btn= new Button(banner,SWT.PUSH);
+		open_add_wms_shell_btn.setText("add WMS");
 		
-		toolbar_btn.addMouseListener(this);
+		open_add_wms_shell_btn.addMouseListener(this);
+		
+		open_set_center_btn= new Button(banner,SWT.PUSH);
+		open_set_center_btn.setText("set Center");
+		open_set_center_btn.addMouseListener(this);
 		
 		openlayers=new OpenLayers(top,SWT.MULTI | SWT.WRAP);
 		openlayers.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -144,10 +184,15 @@ public class View
 	@Override
 	public void mouseDown(MouseEvent e) {
 		Object src=e.getSource();
-		if ( src==toolbar_btn)
+		if ( src==open_add_wms_shell_btn)
 		{
 			add_wms_shell.open();
 			add_wms_shell.setFocus();
+		}
+		else if (src==open_set_center_btn)
+		{
+			edit_center_shell.open();
+			edit_center_shell.setFocus();
 		}
 		else if (src== add_wms_btn)
 		{
@@ -159,6 +204,14 @@ public class View
 			wms_add_url.setText("http://www.polymap.de/geoserver/wms?");
 			wms_add_layers.setText("states");
 		}
+		else if ( src==set_center_btn)
+		{
+			openlayers.setLatitude(new Double(center_lat_field.getText()));
+			openlayers.setLongitude(new Double(center_lon_field.getText()));
+			openlayers.setZoom(Integer.parseInt(zoom_field.getText()));
+			
+		}
+		
 	}
 
 	@Override
