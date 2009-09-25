@@ -206,10 +206,8 @@ public class View
 		}
 		else if ( src==set_center_btn)
 		{
-			openlayers.setLatitude(new Double(center_lat_field.getText()));
-			openlayers.setLongitude(new Double(center_lon_field.getText()));
-			openlayers.setZoom(Integer.parseInt(zoom_field.getText()));
-			
+			openlayers.setCenter(new Double(center_lon_field.getText()), new Double(center_lat_field.getText()));
+			openlayers.zoomTo(Integer.parseInt(zoom_field.getText()));
 		}
 		
 	}
