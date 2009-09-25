@@ -56,14 +56,13 @@ public class View
 
 	public static final String ID = "OpenLayers_RAP_Advanced_Example.view";
 
-	private Shell add_wms_shell;
-	private Shell edit_center_shell;
+	private Shell add_wms_shell,add_control_shell,edit_center_shell;
 	
 	private Display display;
-	private Button open_add_wms_shell_btn,open_set_center_btn;
+	private Button open_add_wms_shell_btn,open_set_center_btn,open_add_control_btn;
 	private OpenLayers openlayers;
-	private Text wms_add_layers,wms_add_url,wms_add_name,center_lon_field,center_lat_field,zoom_field;
-	private Button add_wms_btn,set_center_btn,load_wms_example ;
+	private Text wms_add_layers,wms_add_url,wms_add_name,center_lon_field,center_lat_field,zoom_field,add_control_field;
+	private Button add_wms_btn,add_control_btn,set_center_btn,load_wms_example ;
 	
 	private Font boldFont;
 	
@@ -135,7 +134,24 @@ public class View
 		set_center_btn.addMouseListener(this);	
 		
 	}
+
+	public void createAddControlShell()
+	{
+		add_control_shell=new Shell(display);
+		FillLayout toolbar_layout=new FillLayout();
+		toolbar_layout.type=SWT.VERTICAL;
+		add_control_shell.setLayout( toolbar_layout );
+		add_control_shell.setText( "Add Control" );
+		add_control_shell.setSize(400,70);
 	
+		add_control_field=new Text(add_control_shell,SWT.NONE | SWT.BORDER);
+		
+		add_control_btn=new Button(add_control_shell,SWT.NONE | SWT.BORDER);
+		add_control_btn.setText("OK");
+		add_control_btn.addMouseListener(this);	
+		
+	}
+
 	public void createPartControl(Composite parent) {
 		display = parent.getDisplay();
 		
@@ -144,6 +160,7 @@ public class View
 		
 		createAddWMSShell();
 		createEditCenterShell();
+		createAddControlShell();
 		
 		Composite top = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
@@ -165,9 +182,14 @@ public class View
 		
 		open_add_wms_shell_btn.addMouseListener(this);
 		
+		
 		open_set_center_btn= new Button(banner,SWT.PUSH);
 		open_set_center_btn.setText("set Center");
 		open_set_center_btn.addMouseListener(this);
+		
+		open_add_control_btn= new Button(banner,SWT.PUSH);
+		open_add_control_btn.setText("add Control");
+		open_add_control_btn.addMouseListener(this);
 		
 		openlayers=new OpenLayers(top,SWT.MULTI | SWT.WRAP);
 		openlayers.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -194,6 +216,11 @@ public class View
 			edit_center_shell.open();
 			edit_center_shell.setFocus();
 		}
+		else if (src==open_add_control_btn)
+		{
+			add_control_shell.open();
+			add_control_shell.setFocus();
+		}
 		else if (src== add_wms_btn)
 		{
 			openlayers.addWMS(wms_add_name.getText(), wms_add_name.getText(), wms_add_url.getText(), wms_add_layers.getText());
@@ -209,7 +236,8 @@ public class View
 			openlayers.setCenter(new Double(center_lon_field.getText()), new Double(center_lat_field.getText()));
 			openlayers.zoomTo(Integer.parseInt(zoom_field.getText()));
 		}
-		
+		else if ( src == add_control_btn)
+			openlayers.addControl(add_control_field.getText());
 	}
 
 	@Override
