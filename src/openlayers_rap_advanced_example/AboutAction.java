@@ -17,25 +17,21 @@
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
- *
- * $Id: $
- *
- * @author 	Marcus -LiGi- Bueschleb
- * 	mail to 		ligi (at) polymap (dot) de
- *                  
- * @version $Revision: $
- *
- * Intension of this class:
- *  About Dialog Action
  *   
  */
-
 
 package openlayers_rap_advanced_example;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IWorkbenchWindow;
+
+/**
+ * About Dialog Action
+ * 
+ *  @author Marcus -LiGi- B&uuml;schleb < mail:	ligi (at) polymap (dot) de >
+ *
+*/
 
 public class AboutAction extends Action {
 	

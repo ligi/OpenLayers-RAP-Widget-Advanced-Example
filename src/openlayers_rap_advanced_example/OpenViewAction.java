@@ -18,16 +18,6 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
- * $Id: $
- *
- * @author 	Marcus -LiGi- Bueschleb
- * 	mail to 		ligi (at) polymap (dot) de
- *                  
- * @version $Revision: $
- *
- * Intension of this class:
- *  Action to open another Map-View
- *   
  */
 
 package openlayers_rap_advanced_example;
@@ -38,6 +28,13 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+
+/**
+ *  Action to open another Map-View
+ * 
+ *  @author Marcus -LiGi- B&uuml;schleb < mail: ligi (at) polymap (dot) de >
+ *
+*/
 
 public class OpenViewAction extends Action {
 	

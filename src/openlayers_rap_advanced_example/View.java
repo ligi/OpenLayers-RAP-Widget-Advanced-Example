@@ -1,3 +1,5 @@
+package openlayers_rap_advanced_example;
+
 /*
  * polymap.org
  * Copyright 2009, Polymap GmbH, and individual contributors as indicated
@@ -18,19 +20,8 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
- * $Id: $
- *
- * @author 	Marcus -LiGi- Bueschleb
- * 	mail to 		ligi (at) polymap (dot) de
- *                  
- * @version $Revision: $
- *
- * Intension of this class:
- *  The main view of this example
- *   
  */
 
-package openlayers_rap_advanced_example;
 
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
@@ -48,6 +39,14 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 import org.polymap.rap.widget.openlayers.OpenLayers;
+import org.polymap.rap.widget.openlayers.layers.WMSLayer;
+
+/**
+ *   The main view of this example
+ *   
+ *  @author Marcus -LiGi- B&uuml;schleb < mail:	ligi (at) polymap (dot) de >
+ *
+*/
 
 public class View 
 	extends ViewPart
@@ -149,14 +148,13 @@ public class View
 		add_control_btn=new Button(add_control_shell,SWT.NONE | SWT.BORDER);
 		add_control_btn.setText("OK");
 		add_control_btn.addMouseListener(this);	
-		
 	}
 
 	public void createPartControl(Composite parent) {
 		display = parent.getDisplay();
 		
 		// setup bold font
-		Font boldFont = JFaceResources.getFontRegistry().getBold(JFaceResources.DEFAULT_FONT);    
+		boldFont = JFaceResources.getFontRegistry().getBold(JFaceResources.DEFAULT_FONT);    
 		
 		createAddWMSShell();
 		createEditCenterShell();
@@ -187,10 +185,10 @@ public class View
 		open_set_center_btn.setText("set Center");
 		open_set_center_btn.addMouseListener(this);
 		
-		open_add_control_btn= new Button(banner,SWT.PUSH);
+		/*open_add_control_btn= new Button(banner,SWT.PUSH);
 		open_add_control_btn.setText("add Control");
 		open_add_control_btn.addMouseListener(this);
-		
+		*/
 		openlayers=new OpenLayers(top,SWT.MULTI | SWT.WRAP);
 		openlayers.setLayoutData(new GridData(GridData.FILL_BOTH));
 	}
@@ -223,7 +221,8 @@ public class View
 		}
 		else if (src== add_wms_btn)
 		{
-			openlayers.addWMS(wms_add_name.getText(), wms_add_name.getText(), wms_add_url.getText(), wms_add_layers.getText());
+			WMSLayer wms_layer=new WMSLayer(openlayers, wms_add_name.getText(), wms_add_url.getText(), wms_add_layers.getText());
+			openlayers.addLayer(wms_layer);
 		}
 		else if (src== load_wms_example)
 		{
@@ -236,8 +235,9 @@ public class View
 			openlayers.setCenter(new Double(center_lon_field.getText()), new Double(center_lat_field.getText()));
 			openlayers.zoomTo(Integer.parseInt(zoom_field.getText()));
 		}
-		else if ( src == add_control_btn)
+		/*else if ( src == add_control_btn)
 			openlayers.addControl(add_control_field.getText());
+			*/
 	}
 
 	@Override

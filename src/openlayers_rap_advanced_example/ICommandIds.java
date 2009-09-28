@@ -18,20 +18,16 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
- * $Id: $
- *
- * @author 	Marcus -LiGi- Bueschleb
- * 	mail to 		ligi (at) polymap (dot) de
- *                  
- * @version $Revision: $
- *
- * Intension of this class:
- *  Interface for CommandIds
- *   
  */
 
 package openlayers_rap_advanced_example;
 
+/**
+ * Interface for CommandIds
+ * 
+ *  @author Marcus -LiGi- B&uuml;schleb < mail:	ligi (at) polymap (dot) de >
+ *
+*/
 
 public interface ICommandIds {
 

@@ -18,16 +18,6 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
- * $Id: $
- *
- * @author 	Marcus -LiGi- Bueschleb
- * 	mail to 		ligi (at) polymap (dot) de
- *                  
- * @version $Revision: $
- *
- * Intension of this class:
- *  Application Class / Entry Point 
- *   
  */
 
 package openlayers_rap_advanced_example;
@@ -36,6 +26,13 @@ import org.eclipse.rwt.lifecycle.IEntryPoint;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.application.WorkbenchAdvisor;
+
+/**
+ * Application Class / Entry Point
+ * 
+ *  @author Marcus -LiGi- B&uuml;schleb < mail: ligi (at) polymap (dot) de >
+ *
+*/
 
 public class Application implements IEntryPoint {
 
