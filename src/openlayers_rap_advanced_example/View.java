@@ -221,7 +221,7 @@ public class View
 		}
 		else if (src== add_wms_btn)
 		{
-			WMSLayer wms_layer=new WMSLayer(openlayers, wms_add_name.getText(), wms_add_url.getText(), wms_add_layers.getText());
+			WMSLayer wms_layer=new WMSLayer( wms_add_name.getText(), wms_add_url.getText(), wms_add_layers.getText());
 			openlayers.addLayer(wms_layer);
 		}
 		else if (src== load_wms_example)
