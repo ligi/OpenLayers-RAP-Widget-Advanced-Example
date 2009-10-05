@@ -65,8 +65,7 @@ public class View
 	
 	private Font boldFont;
 	
-	public void createAddWMSShell()
-	{
+	public void createAddWMSShell() {
 		add_wms_shell=new Shell(display);
 		FillLayout toolbar_layout=new FillLayout();
 		toolbar_layout.type=SWT.HORIZONTAL;
@@ -101,8 +100,7 @@ public class View
 		
 	}
 
-	public void createEditCenterShell()
-	{
+	public void createEditCenterShell() {
 	
 		edit_center_shell=new Shell(display);
 		FillLayout toolbar_layout=new FillLayout();
@@ -134,8 +132,7 @@ public class View
 		
 	}
 
-	public void createAddControlShell()
-	{
+	public void createAddControlShell() {
 		add_control_shell=new Shell(display);
 		FillLayout toolbar_layout=new FillLayout();
 		toolbar_layout.type=SWT.VERTICAL;
@@ -204,34 +201,28 @@ public class View
 	@Override
 	public void mouseDown(MouseEvent e) {
 		Object src=e.getSource();
-		if ( src==open_add_wms_shell_btn)
-		{
+		if ( src==open_add_wms_shell_btn) {
 			add_wms_shell.open();
 			add_wms_shell.setFocus();
 		}
-		else if (src==open_set_center_btn)
-		{
+		else if (src==open_set_center_btn) {
 			edit_center_shell.open();
 			edit_center_shell.setFocus();
 		}
-		else if (src==open_add_control_btn)
-		{
+		else if (src==open_add_control_btn) {
 			add_control_shell.open();
 			add_control_shell.setFocus();
 		}
-		else if (src== add_wms_btn)
-		{
+		else if (src== add_wms_btn) {
 			WMSLayer wms_layer=new WMSLayer( wms_add_name.getText(), wms_add_url.getText(), wms_add_layers.getText());
 			openlayers.addLayer(wms_layer);
 		}
-		else if (src== load_wms_example)
-		{
+		else if (src== load_wms_example) {
 			wms_add_name.setText("polymap");
 			wms_add_url.setText("http://www.polymap.de/geoserver/wms?");
 			wms_add_layers.setText("states");
 		}
-		else if ( src==set_center_btn)
-		{
+		else if ( src==set_center_btn) {
 			openlayers.setCenter(new Double(center_lon_field.getText()), new Double(center_lat_field.getText()));
 			openlayers.zoomTo(Integer.parseInt(zoom_field.getText()));
 		}
