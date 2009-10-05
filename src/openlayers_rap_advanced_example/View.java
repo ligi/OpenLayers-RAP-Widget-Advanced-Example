@@ -311,7 +311,7 @@ public class View
 		}
 		else if (src==create_boxes_btn)		{
 			VectorLayer multibox_layer=new VectorLayer(  boxes_name_field.getText() );
-			openlayers.addLayer(multibox_layer);
+			
 			int x_size= Integer.parseInt(boxes_x_count_field.getText());
 			int y_size= Integer.parseInt(boxes_y_count_field.getText());
 			
@@ -320,6 +320,11 @@ public class View
 					multibox_layer.addFeatures(new VectorFeature(new Bounds(2.0*x, 2.0*y ,2.0*x+1.8 ,2.0*y+1.8)));
 				
 				
+
+			multibox_layer.setIsBaseLayer(true);
+			openlayers.addLayer(multibox_layer);
+			openlayers.setBaseLayer(multibox_layer);
+			
 			// setting up the Modify Feature Control
 			SelectFeatureControl sfc=new SelectFeatureControl(multibox_layer);
 		
