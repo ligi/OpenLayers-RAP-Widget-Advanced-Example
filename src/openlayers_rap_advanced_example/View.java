@@ -42,6 +42,7 @@ import org.polymap.rap.widget.openlayers.OpenLayers;
 import org.polymap.rap.widget.openlayers.base_types.Bounds;
 import org.polymap.rap.widget.openlayers.controls.KeyboardDefaultsControl;
 import org.polymap.rap.widget.openlayers.controls.LayerSwitcherControl;
+import org.polymap.rap.widget.openlayers.controls.ModifyFeatureControl;
 import org.polymap.rap.widget.openlayers.controls.MouseDefaultsControl;
 import org.polymap.rap.widget.openlayers.controls.PanZoomBarControl;
 import org.polymap.rap.widget.openlayers.controls.SelectFeatureControl;
@@ -317,7 +318,7 @@ public class View
 			
 			for ( int x = -(x_size/2) ; x<(-(x_size/2)+x_size); x++ )
 				for ( int y = -(y_size/2) ; y<(-(y_size/2)+y_size) ;y++ )
-					multibox_layer.addFeatures(new VectorFeature(new Bounds(2.0*x, 2.0*y ,2.0*x+1.8 ,2.0*y+1.8)));
+					multibox_layer.addFeatures(new VectorFeature(new Bounds(2.0*x, 2.0*y ,2.0*x+1.8 ,2.0*y+1.8).toGeometry()));
 				
 				
 
@@ -326,10 +327,10 @@ public class View
 			openlayers.setBaseLayer(multibox_layer);
 			
 			// setting up the Modify Feature Control
-			SelectFeatureControl sfc=new SelectFeatureControl(multibox_layer);
+			ModifyFeatureControl mfc=new ModifyFeatureControl(multibox_layer);
 		
-			openlayers.addControl(sfc);
-			sfc.activate();
+			openlayers.addControl(mfc);
+			mfc.activate();
 			
 			if (!center_set) {
 				openlayers.setCenter(0,0);
