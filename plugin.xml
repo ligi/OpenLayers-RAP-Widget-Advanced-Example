@@ -38,7 +38,7 @@
             name="Open Mailbox"
             description="Opens a mailbox"
             categoryId="openlayers_rap_advanced_example.category"
-            id="openlayers_rap_advanced_example.open">
+            id="OpenLayers_RAP_Advanced_Example.open">
       </command>
       <command
             name="Open Message Dialog"
