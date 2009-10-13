@@ -47,9 +47,9 @@ public class OpenViewAction extends Action {
 		this.viewId = viewId;
         setText(label);
         // The id is used to refer to the action in a menu or toolbar
-		setId(ICommandIds.CMD_OPEN);
+        setId(ICommandIds.CMD_OPEN);
         // Associate the action with a pre-defined command, to allow key bindings.
-		setActionDefinitionId(ICommandIds.CMD_OPEN);
+        setActionDefinitionId(ICommandIds.CMD_OPEN);
 		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin("OpenLayers_RAP_Advanced_Example", "/icons/add.gif"));
 	}
 	
