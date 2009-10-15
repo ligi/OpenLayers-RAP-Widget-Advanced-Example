@@ -37,17 +37,17 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
-import org.polymap.rap.widget.openlayers.OpenLayers;
-import org.polymap.rap.widget.openlayers.base_types.Bounds;
-import org.polymap.rap.widget.openlayers.controls.KeyboardDefaultsControl;
-import org.polymap.rap.widget.openlayers.controls.LayerSwitcherControl;
-import org.polymap.rap.widget.openlayers.controls.ModifyFeatureControl;
-import org.polymap.rap.widget.openlayers.controls.MouseDefaultsControl;
-import org.polymap.rap.widget.openlayers.controls.PanZoomBarControl;
-import org.polymap.rap.widget.openlayers.controls.SelectFeatureControl;
-import org.polymap.rap.widget.openlayers.features.VectorFeature;
-import org.polymap.rap.widget.openlayers.layers.VectorLayer;
-import org.polymap.rap.widget.openlayers.layers.WMSLayer;
+import org.polymap.openlayers.rap.widget.OpenLayers;
+import org.polymap.openlayers.rap.widget.base_types.Bounds;
+import org.polymap.openlayers.rap.widget.controls.KeyboardDefaultsControl;
+import org.polymap.openlayers.rap.widget.controls.LayerSwitcherControl;
+import org.polymap.openlayers.rap.widget.controls.ModifyFeatureControl;
+import org.polymap.openlayers.rap.widget.controls.MouseDefaultsControl;
+import org.polymap.openlayers.rap.widget.controls.PanZoomBarControl;
+import org.polymap.openlayers.rap.widget.controls.SelectFeatureControl;
+import org.polymap.openlayers.rap.widget.features.VectorFeature;
+import org.polymap.openlayers.rap.widget.layers.VectorLayer;
+import org.polymap.openlayers.rap.widget.layers.WMSLayer;
 
 /**
  * The main view of this example
