@@ -16,34 +16,40 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
- * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
- *
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org. 
  */
 
-package openlayers_rap_advanced_example;
+package org.polymap.openlayers.rap.widget.example.advanced;
 
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.ui.application.ActionBarAdvisor;
+import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
-import org.eclipse.ui.application.WorkbenchAdvisor;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 
-
 /**
- * Workbench Advisor
+ * Workbench Window Advisor
  * 
  *  @author Marcus -LiGi- B&uuml;schleb < mail:	ligi (at) polymap (dot) de >
  *
 */
 
-public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
-	
-	private static final String PERSPECTIVE_ID = "OpenLayers_RAP_Advanced_Example.perspective";
+public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
-    public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
-        return new ApplicationWorkbenchWindowAdvisor(configurer);
+    public ApplicationWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
+        super(configurer);
     }
 
-	public String getInitialWindowPerspectiveId() {
-		return PERSPECTIVE_ID;
-	} 
-	
+    public ActionBarAdvisor createActionBarAdvisor(IActionBarConfigurer configurer) {
+        return new ApplicationActionBarAdvisor(configurer);
+    }
+    
+    public void preWindowOpen() {
+        IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
+        configurer.setInitialSize(new Point(800, 600));
+        configurer.setShowCoolBar(true);
+        configurer.setShowStatusLine(false);
+        configurer.setTitle("OpenLayers RAP Widget Advanced Example");
+    }
+    
 }

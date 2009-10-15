@@ -20,29 +20,30 @@
  *
  */
 
-package openlayers_rap_advanced_example;
+package org.polymap.openlayers.rap.widget.example.advanced;
 
-import org.eclipse.ui.IFolderLayout;
-import org.eclipse.ui.IPageLayout;
-import org.eclipse.ui.IPerspectiveFactory;
+import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
+import org.eclipse.ui.application.WorkbenchAdvisor;
+import org.eclipse.ui.application.WorkbenchWindowAdvisor;
+
 
 /**
- * Configure Perspective Layout
+ * Workbench Advisor
  * 
- *  @author Marcus -LiGi- B&uuml;schleb < mail: ligi (at) polymap (dot) de >
+ *  @author Marcus -LiGi- B&uuml;schleb < mail:	ligi (at) polymap (dot) de >
  *
 */
 
+public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
+	
+	private static final String PERSPECTIVE_ID = "OpenLayers_RAP_Advanced_Example.perspective";
 
-public class Perspective implements IPerspectiveFactory {
+    public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
+        return new ApplicationWorkbenchWindowAdvisor(configurer);
+    }
 
-	public void createInitialLayout(IPageLayout layout) {
-		String editorArea = layout.getEditorArea();
-		layout.setEditorAreaVisible(false);
-		
-		IFolderLayout folder = layout.createFolder("maps", IPageLayout.TOP, 0.5f, editorArea);
-		folder.addPlaceholder(View.ID + ":*");
-		folder.addView(View.ID);
-				
-	}
+	public String getInitialWindowPerspectiveId() {
+		return PERSPECTIVE_ID;
+	} 
+	
 }

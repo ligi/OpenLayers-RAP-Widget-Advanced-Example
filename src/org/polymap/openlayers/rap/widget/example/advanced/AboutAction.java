@@ -17,20 +17,42 @@
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
- *
+ *   
  */
 
-package openlayers_rap_advanced_example;
+package org.polymap.openlayers.rap.widget.example.advanced;
+
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.ui.IWorkbenchWindow;
 
 /**
- * Interface for CommandIds
+ * About Dialog Action
  * 
  *  @author Marcus -LiGi- B&uuml;schleb < mail:	ligi (at) polymap (dot) de >
  *
 */
 
-public interface ICommandIds {
-
-    public static final String CMD_OPEN = "OpenLayers_RAP_Advanced_Example.open";
-    
+public class AboutAction extends Action {
+	
+	private final IWorkbenchWindow window;
+	
+	public AboutAction(IWorkbenchWindow window) {
+		super("About");
+		setId(this.getClass().getName());
+		this.window = window;
+	}
+	
+	public void run() {
+		if(window != null) {	
+			String title = "About OpenLayers RAP Widget Advanced Example";
+			String msg =    "Example on how to use the OpenLayers RAP Widget\n\n"
+									+ "Created 2009 by Marcus -LiGi- Bueschleb\n"
+									+ "for Polymap http://www.polymap.org\n"
+									+ "for Questions mail to ligi" + "@" + "polymap.de\n";
+			MessageDialog.openInformation( window.getShell(), title, msg ); 
+		}
+	}
+	
 }
+	

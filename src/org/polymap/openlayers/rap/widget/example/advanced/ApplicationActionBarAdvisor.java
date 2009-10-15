@@ -20,7 +20,7 @@
  *
  */
 
-package openlayers_rap_advanced_example;
+package org.polymap.openlayers.rap.widget.example.advanced;
 
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;

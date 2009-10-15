@@ -17,42 +17,49 @@
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
- *   
+ *
  */
 
-package openlayers_rap_advanced_example;
+package org.polymap.openlayers.rap.widget.example.advanced;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * About Dialog Action
+ *  Action to open another Map-View
  * 
- *  @author Marcus -LiGi- B&uuml;schleb < mail:	ligi (at) polymap (dot) de >
+ *  @author Marcus -LiGi- B&uuml;schleb < mail: ligi (at) polymap (dot) de >
  *
 */
 
-public class AboutAction extends Action {
+public class OpenViewAction extends Action {
 	
 	private final IWorkbenchWindow window;
+	private int instanceNum = 0;
+	private final String viewId;
 	
-	public AboutAction(IWorkbenchWindow window) {
-		super("About");
-		setId(this.getClass().getName());
+	public OpenViewAction(IWorkbenchWindow window, String label, String viewId) {
 		this.window = window;
+		this.viewId = viewId;
+        setText(label);
+        // The id is used to refer to the action in a menu or toolbar
+        setId(ICommandIds.CMD_OPEN);
+        // Associate the action with a pre-defined command, to allow key bindings.
+        setActionDefinitionId(ICommandIds.CMD_OPEN);
+		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin("OpenLayers_RAP_Advanced_Example", "/icons/add.gif"));
 	}
 	
 	public void run() {
 		if(window != null) {	
-			String title = "About OpenLayers RAP Widget Advanced Example";
-			String msg =    "Example on how to use the OpenLayers RAP Widget\n\n"
-									+ "Created 2009 by Marcus -LiGi- Bueschleb\n"
-									+ "for Polymap http://www.polymap.org\n"
-									+ "for Questions mail to ligi" + "@" + "polymap.de\n";
-			MessageDialog.openInformation( window.getShell(), title, msg ); 
+			try {
+				window.getActivePage().showView(viewId, Integer.toString(instanceNum++), IWorkbenchPage.VIEW_ACTIVATE);
+			} catch (PartInitException e) {
+				MessageDialog.openError(window.getShell(), "Error", "Error opening view:" + e.getMessage());
+			}
 		}
 	}
-	
 }
-	

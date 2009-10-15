@@ -20,7 +20,7 @@
  *
  */
 
-package openlayers_rap_advanced_example;
+package org.polymap.openlayers.rap.widget.example.advanced;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -5,7 +5,7 @@
    <extension
          point="org.eclipse.rap.ui.entrypoint">
       <entrypoint
-            class="openlayers_rap_advanced_example.Application"
+            class="org.polymap.openlayers.rap.widget.example.advanced.Application"
             parameter="maps"
             id="openlayers_rap_advanced_example.Application">
       </entrypoint>
@@ -14,7 +14,7 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             name="RAP Perspective"
-            class="openlayers_rap_advanced_example.Perspective"
+            class="org.polymap.openlayers.rap.widget.example.advanced.Perspective"
             id="OpenLayers_RAP_Advanced_Example.perspective">
       </perspective>
    </extension>
@@ -24,7 +24,7 @@
             allowMultiple="true"
             name="Map"
             icon="icons/add.gif"
-            class="openlayers_rap_advanced_example.View"
+            class="org.polymap.openlayers.rap.widget.example.advanced.View"
             id="OpenLayers_RAP_Advanced_Example.view">
       </view>
    </extension>
