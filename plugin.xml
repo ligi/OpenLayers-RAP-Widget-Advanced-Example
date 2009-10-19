@@ -47,5 +47,15 @@
             id="openlayers_rap_advanced_example.openMessage">
       </command>
    </extension>
+   
+   
+     <extension
+         point="org.eclipse.equinox.http.registry.resources">
+      <resource
+            alias="/js_lib"
+            base-name="/js_lib">
+      </resource>
+   </extension>
+   
 
 </plugin>

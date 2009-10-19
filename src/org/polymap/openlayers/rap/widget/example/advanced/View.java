@@ -225,44 +225,7 @@ public class View extends ViewPart implements MouseListener {
 
 	public void createPartControl(Composite parent) {
 		display = parent.getDisplay();
-		
-		// add the openlayers  lib as RAP resources
-		RWT.getResourceManager().setContextLoader(getClass().getClassLoader());
-
-		InputStream ins = RWT.getResourceManager().getResourceAsStream(
-				"/lib/list.txt");
-
-		String act_res2register = "";
-		int c = 0;
-
-		while (c != -1) {
-			try {
-				c = ins.read();
-				if ((c == '\n') || (c == '\r')) {
-						if (!act_res2register.equals("")) {
-						try {
-							RWT.getResourceManager().register(
-									"/lib/" + act_res2register);
-							System.out.println("registred /lib/"
-									+ act_res2register);
-						} catch (Exception e) {
-
-							System.out.println("!!! cant register /lib/"
-									+ act_res2register);
-						}
-						act_res2register = "";
-					}
-
-				} else if (c != -1)
-					act_res2register += (char) c;
-				
-			} catch (IOException e) {
-				c = -1;
-			}
-
-		}
-
-
+	
 		// setup bold font
 		boldFont = JFaceResources.getFontRegistry().getBold(
 				JFaceResources.DEFAULT_FONT);
@@ -300,7 +263,7 @@ public class View extends ViewPart implements MouseListener {
 		 * open_add_control_btn.setText("add Control");
 		 * open_add_control_btn.addMouseListener(this);
 		 */
-		openlayers = new OpenLayers(top, SWT.MULTI | SWT.WRAP, "/lib/OpenLayers/OpenLayers.js");
+		openlayers = new OpenLayers(top, SWT.MULTI | SWT.WRAP, "/js_lib/OpenLayers/OpenLayers.js");
 		openlayers.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		// add some controls
@@ -309,7 +272,6 @@ public class View extends ViewPart implements MouseListener {
 		openlayers.addControl(new KeyboardDefaultsControl());
 		openlayers.addControl(new PanZoomBarControl());
 		openlayers.addControl(new ScaleControl());
-
 	}
 
 	public void setFocus() {
