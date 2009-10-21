@@ -43,6 +43,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 import org.polymap.openlayers.rap.widget.OpenLayers;
 import org.polymap.openlayers.rap.widget.base_types.Bounds;
+import org.polymap.openlayers.rap.widget.base_types.OpenLayersMap;
 import org.polymap.openlayers.rap.widget.controls.KeyboardDefaultsControl;
 import org.polymap.openlayers.rap.widget.controls.LayerSwitcherControl;
 import org.polymap.openlayers.rap.widget.controls.ModifyFeatureControl;
@@ -71,7 +72,7 @@ public class View extends ViewPart implements MouseListener {
 	private Display display;
 	private Button open_add_wms_shell_btn, open_set_center_btn,
 			open_add_control_btn, open_create_boxes_btn;
-	private OpenLayers openlayers;
+	private OpenLayersMap map;
 	private Text wms_add_layers, wms_add_url, wms_add_name, center_lon_field,
 			center_lat_field, zoom_field, add_control_field;
 	private Text boxes_name_field, boxes_x_count_field, boxes_y_count_field;
@@ -225,7 +226,7 @@ public class View extends ViewPart implements MouseListener {
 
 	public void createPartControl(Composite parent) {
 		display = parent.getDisplay();
-	
+
 		// setup bold font
 		boldFont = JFaceResources.getFontRegistry().getBold(
 				JFaceResources.DEFAULT_FONT);
@@ -263,15 +264,17 @@ public class View extends ViewPart implements MouseListener {
 		 * open_add_control_btn.setText("add Control");
 		 * open_add_control_btn.addMouseListener(this);
 		 */
-		openlayers = new OpenLayers(top, SWT.MULTI | SWT.WRAP, "/js_lib/OpenLayers/OpenLayers.js");
-		openlayers.setLayoutData(new GridData(GridData.FILL_BOTH));
+		OpenLayers widget = new OpenLayers(top, SWT.MULTI | SWT.WRAP, "/js_lib/OpenLayers/OpenLayers.js");
+		widget.setLayoutData(new GridData(GridData.FILL_BOTH));
 
+		map=widget.getMap();
+		
 		// add some controls
-		openlayers.addControl(new LayerSwitcherControl());
-		openlayers.addControl(new MouseDefaultsControl());
-		openlayers.addControl(new KeyboardDefaultsControl());
-		openlayers.addControl(new PanZoomBarControl());
-		openlayers.addControl(new ScaleControl());
+		map.addControl(new LayerSwitcherControl());
+		map.addControl(new MouseDefaultsControl());
+		map.addControl(new KeyboardDefaultsControl());
+		map.addControl(new PanZoomBarControl());
+		map.addControl(new ScaleControl());
 	}
 
 	public void setFocus() {
@@ -295,11 +298,11 @@ public class View extends ViewPart implements MouseListener {
 		else if (src == add_wms_btn) {
 			WMSLayer wms_layer = new WMSLayer(wms_add_name.getText(),
 					wms_add_url.getText(), wms_add_layers.getText());
-			openlayers.addLayer(wms_layer);
+			map.addLayer(wms_layer);
 
 			if (!center_set) {
-				openlayers.setCenter(0, 0);
-				openlayers.zoomTo(1);
+				map.setCenter(0, 0);
+				map.zoomTo(1);
 			}
 
 		} else if (src == load_wms_example) {
@@ -307,9 +310,9 @@ public class View extends ViewPart implements MouseListener {
 			wms_add_url.setText("http://www.polymap.de/geoserver/wms?");
 			wms_add_layers.setText("states");
 		} else if (src == set_center_btn) {
-			openlayers.setCenter(new Double(center_lon_field.getText()),
+			map.setCenter(new Double(center_lon_field.getText()),
 					new Double(center_lat_field.getText()));
-			openlayers.zoomTo(Integer.parseInt(zoom_field.getText()));
+			map.zoomTo(Integer.parseInt(zoom_field.getText()));
 			center_set = true;
 		} else if (src == create_boxes_btn) {
 			VectorLayer multibox_layer = new VectorLayer(boxes_name_field
@@ -324,18 +327,18 @@ public class View extends ViewPart implements MouseListener {
 							2.0 * x, 2.0 * y, 2.0 * x + 1.8, 2.0 * y + 1.8).toGeometry()));
 
 			multibox_layer.setIsBaseLayer(true);
-			openlayers.addLayer(multibox_layer);
-			openlayers.setBaseLayer(multibox_layer);
+			map.addLayer(multibox_layer);
+			map.setBaseLayer(multibox_layer);
 
 			// setting up the Modify Feature Control
 			ModifyFeatureControl mfc = new ModifyFeatureControl(multibox_layer);
 
-			openlayers.addControl(mfc);
+			map.addControl(mfc);
 			mfc.activate();
 
 			if (!center_set) {
-				openlayers.setCenter(0, 0);
-				openlayers.zoomTo(1);
+				map.setCenter(0, 0);
+				map.zoomTo(1);
 			}
 
 		}
