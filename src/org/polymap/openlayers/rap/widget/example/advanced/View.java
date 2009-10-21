@@ -41,7 +41,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
-import org.polymap.openlayers.rap.widget.OpenLayers;
+import org.polymap.openlayers.rap.widget.OpenLayersWidget;
 import org.polymap.openlayers.rap.widget.base_types.Bounds;
 import org.polymap.openlayers.rap.widget.base_types.OpenLayersMap;
 import org.polymap.openlayers.rap.widget.controls.KeyboardDefaultsControl;
@@ -264,7 +264,7 @@ public class View extends ViewPart implements MouseListener {
 		 * open_add_control_btn.setText("add Control");
 		 * open_add_control_btn.addMouseListener(this);
 		 */
-		OpenLayers widget = new OpenLayers(top, SWT.MULTI | SWT.WRAP, "/js_lib/OpenLayers/OpenLayers.js");
+		OpenLayersWidget widget = new OpenLayersWidget(top, SWT.MULTI | SWT.WRAP, "/js_lib/OpenLayers/OpenLayers.js");
 		widget.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		map=widget.getMap();
