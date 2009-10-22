@@ -22,11 +22,7 @@
 
 package org.polymap.openlayers.rap.widget.example.advanced;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.rwt.RWT;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -41,7 +37,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
-import org.polymap.openlayers.rap.widget.OpenLayers;
+import org.polymap.openlayers.rap.widget.OpenLayersWidget;
 import org.polymap.openlayers.rap.widget.base_types.Bounds;
 import org.polymap.openlayers.rap.widget.base_types.OpenLayersMap;
 import org.polymap.openlayers.rap.widget.controls.KeyboardDefaultsControl;
@@ -50,7 +46,6 @@ import org.polymap.openlayers.rap.widget.controls.ModifyFeatureControl;
 import org.polymap.openlayers.rap.widget.controls.MouseDefaultsControl;
 import org.polymap.openlayers.rap.widget.controls.PanZoomBarControl;
 import org.polymap.openlayers.rap.widget.controls.ScaleControl;
-import org.polymap.openlayers.rap.widget.controls.SelectFeatureControl;
 import org.polymap.openlayers.rap.widget.features.VectorFeature;
 import org.polymap.openlayers.rap.widget.layers.VectorLayer;
 import org.polymap.openlayers.rap.widget.layers.WMSLayer;
@@ -74,7 +69,7 @@ public class View extends ViewPart implements MouseListener {
 			open_add_control_btn, open_create_boxes_btn;
 	private OpenLayersMap map;
 	private Text wms_add_layers, wms_add_url, wms_add_name, center_lon_field,
-			center_lat_field, zoom_field, add_control_field;
+			center_lat_field, zoom_field; //, add_control_field;
 	private Text boxes_name_field, boxes_x_count_field, boxes_y_count_field;
 	private Button add_wms_btn, add_control_btn, set_center_btn,
 			load_wms_example, create_boxes_btn;
@@ -214,7 +209,7 @@ public class View extends ViewPart implements MouseListener {
 		add_control_shell.setText("Add Control");
 		add_control_shell.setSize(400, 70);
 
-		add_control_field = new Text(add_control_shell, SWT.NONE | SWT.BORDER);
+//		add_control_field = new Text(add_control_shell, SWT.NONE | SWT.BORDER);
 
 		add_control_btn = new Button(add_control_shell, SWT.NONE | SWT.BORDER);
 		add_control_btn.setText("OK");
@@ -264,7 +259,7 @@ public class View extends ViewPart implements MouseListener {
 		 * open_add_control_btn.setText("add Control");
 		 * open_add_control_btn.addMouseListener(this);
 		 */
-		OpenLayers widget = new OpenLayers(top, SWT.MULTI | SWT.WRAP, "/js_lib/OpenLayers/OpenLayers.js");
+		OpenLayersWidget widget = new OpenLayersWidget(top, SWT.MULTI | SWT.WRAP, "/js_lib/OpenLayers/OpenLayers.js");
 		widget.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		map=widget.getMap();
